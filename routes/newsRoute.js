@@ -1,11 +1,11 @@
 import express from "express";
-import { createNews } from "../controller/newsController.js";
+import { createNews , getAllNews} from "../controller/newsController.js";
 
 
 const NewsRouter = express.Router();
 
 NewsRouter.post("/",createNews);
-
+NewsRouter.get("/",getAllNews);
 
 
 

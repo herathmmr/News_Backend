@@ -41,7 +41,6 @@ connection.once("open",()=>{
     console.log("MongoDB connection successfull")
 })
 app.use("/api/users",userRouter);
-
 app.use("/api/news",NewsRouter);
 
 

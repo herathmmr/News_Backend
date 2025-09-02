@@ -21,5 +21,17 @@ export async function createNews(req, res) {
         res.status(500).json({message : "News add failed",error : error.message});
     }
 }
-
+export async function getAllNews(req, res) {
+    try {
+        if (isItCustomer(req) || isItAdmin(req)) {
+            
+            const news = await News.find().sort({ createdAt: -1 });
+            res.json(news);
+        } else {
+            res.status(401).json({ message: "unauthorized user" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "fetching news failed", error: error.message });
+    }
+}
 
