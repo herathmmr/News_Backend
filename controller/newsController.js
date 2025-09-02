@@ -35,3 +35,28 @@ export async function getAllNews(req, res) {
     }
 }
 
+export async function deleteNews(req,res){
+    try{
+        const id= req.params.articleId;
+        if(isItAdmin(req)){
+            const news = await News.findOne({articleId:id})
+            if(news == null){
+                res.json({message :" news article  not found"})
+                return;
+              
+            }else{
+                 await News.deleteOne({articleId:id})
+                res.json({message : "delete successfully"})
+    }
+       
+        }else{
+            res.json({message : " your not authorize to perform this"})
+        }
+        
+       
+
+    }catch(error){
+        res.status(500).json({message :"News delete failed",error : error.message})
+
+    }
+}
