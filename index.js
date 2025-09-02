@@ -6,6 +6,7 @@ import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken";
 
 
+
 dotenv.config();
 let app= express();
 
@@ -41,6 +42,7 @@ connection.once("open",()=>{
 })
 app.use("/api/users",userRouter);
 
-app.listen(3004,()=>{
-    console.log("server is running on 3003")
+
+app.listen(3005,()=>{
+    console.log("server is running on 3005")
 })
