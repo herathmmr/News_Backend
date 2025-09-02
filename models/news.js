@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 
-const articleSchema = new mongoose.Schema(
+const NewsSchema = new mongoose.Schema(
   {
     articleId: {
       type: Number,
@@ -27,6 +27,10 @@ const articleSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
+    date :{
+        type: Date,
+        default: Date.now,
+    },
     views: {
       type: Number,
       default: 0,
@@ -38,5 +42,5 @@ const articleSchema = new mongoose.Schema(
   }, 
 );
 
-const Article = mongoose.model("Article", articleSchema);
-export default Article;
+const News = mongoose.model("News", NewsSchema);
+export default News;
