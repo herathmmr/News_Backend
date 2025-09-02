@@ -2,7 +2,7 @@ import express from "express"
 import bodyParser from "body-parser"
 import mongoose, { mongo } from "mongoose"
 import dotenv from "dotenv";
-import userRouter from "./routes/userRouter";
+import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken";
 
 
