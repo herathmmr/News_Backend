@@ -30,6 +30,7 @@ app.use((req,res,next)=>{
 })
 
 
+
 let mongoUrl =process.env.MONGO_URL;
 
 mongoose.connect(mongoUrl)
@@ -38,7 +39,7 @@ let connection =mongoose.connection
 connection.once("open",()=>{
     console.log("MongoDB connection successfull")
 })
-
+app.use("/api/users",userRouter);
 
 app.listen(3004,()=>{
     console.log("server is running on 3003")
