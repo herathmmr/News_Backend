@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 const NewsSchema = new mongoose.Schema(
   {
     articleId: {
-      type: Number,
+      type: String,
       required: true,
       unique: true,
   
