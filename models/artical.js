@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-i
+
 
 const articleSchema = new mongoose.Schema(
   {
@@ -24,7 +24,7 @@ const articleSchema = new mongoose.Schema(
       required: true,
     },
     author: {
-      type: "string",
+      type: String,
       required: true,
     },
     views: {

@@ -4,7 +4,7 @@ import mongoose, { mongo } from "mongoose"
 import dotenv from "dotenv";
 import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken";
-
+import ArticleRouter from "./routes/articalRoute.js";
 
 
 dotenv.config();
@@ -41,6 +41,8 @@ connection.once("open",()=>{
     console.log("MongoDB connection successfull")
 })
 app.use("/api/users",userRouter);
+app.use("/api/articles",ArticleRouter);
+
 
 
 app.listen(3005,()=>{
