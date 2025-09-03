@@ -5,10 +5,12 @@ import dotenv from "dotenv";
 import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken";
 import NewsRouter from "./routes/newsRoute.js";
+import cors from "cors";
 
 
 dotenv.config();
 let app= express();
+app.use(cors());
 
 app.use(bodyParser.json());
 app.use((req,res,next)=>{
