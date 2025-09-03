@@ -3,8 +3,8 @@ import mongoose from "mongoose";
 
 const NewsSchema = new mongoose.Schema(
   {
-    articleId: {
-      type: String,
+    id: {
+      type: Number,
       required: true,
       unique: true,
   

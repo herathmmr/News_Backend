@@ -37,11 +37,11 @@ export async function getAllNews(req, res) {
 
 export async function deleteNews(req,res){
     try{
-        const id= req.params.articleId;
+        const id= req.params.id;
         if(isItAdmin(req)){
-            const news = await News.findOne({articleId:id})
+            const news = await News.findOne({id:id})
            
-                 await News.deleteOne({articleId:id})
+                 await News.deleteOne({id:id})
                 res.json({message : "delete successfully"})
     
        
@@ -57,20 +57,21 @@ export async function deleteNews(req,res){
     }
 }
 
-export async function updateNews(req,res){
-    try{
-        const id = req.params.articleId;
+export async function updateNews(req, res) {
+    try {
+        const id = req.params.id;
         const data = req.body;
-        if(isItAdmin(req)){
+        if (isItAdmin(req)) {
+            
+            const result = await News.updateOne({ id: id }, data);
            
-            await Inquiry.updateOne({articleId:id}, data);
-            res.json({message : "news article update successfully"});
-            return;}else{
+            res.json({ message: "news article update successfully" });
+        } else {
             res.status(403).json({
-                message : "you are not authorize to access this action"
+                message: "you are not authorize to access this action"
             });
-            return;
-        }}catch(error){
-        res.status(500).json({message :"news artical update fail"});
+        }
+    } catch (error) {
+        res.status(500).json({ message: "news article update fail", error: error.message });
     }
 }
