@@ -50,7 +50,7 @@ export function loginUser(req,res){
                     profilePicture:user.profilePicture, 
                     phone : user.phone,      
                                       },process.env.SECRET_KEY) 
-                res.json({message :" login successfull",token:token});
+                res.json({message :" login successfull",token:token,userData:user});
             }else{
                 res.status(404).json({error:"login fail"})
             }
