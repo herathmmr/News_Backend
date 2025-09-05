@@ -82,6 +82,38 @@ export async function getAllUsers(req,res){
             res.json({message : "your not authorize"})
         }
     }catch(error){
-         res.status(500).json({ message: "failed to get users", error: error.message });
+         res.json({ message: "failed to get users", error: error.message });
     }
 }
+
+/*export async function BlockOrUnblock(req, res) {
+  const email = req.params.email; 
+
+  try {
+    if (isItAdmin(req)) {
+      const user = await UserModel.findOne({ email });
+
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      const isBlocked = !user.isBlocked;
+
+      await UserModel.updateOne(
+        { email },
+        { $set: { isBlocked } }
+      );
+
+      return res.json({
+        message: `User ${isBlocked ? "blocked" : "unblocked"} successfully`,
+        user: { email, isBlocked }
+      });
+    } else {
+      return res.status(403).json({ message: "Unauthorized access" });
+    }
+  } catch (error) {
+    return res
+      .status(500)
+      .json({ message: "Error updating user", error: error.message });
+  }
+}*/
