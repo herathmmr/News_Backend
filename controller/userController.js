@@ -50,7 +50,7 @@ export function loginUser(req,res){
                     profilePicture:user.profilePicture, 
                     phone : user.phone,      
                                       },process.env.SECRET_KEY) 
-                res.json({message :" login successfull",token:token,userData:user});
+                res.json({message :" login successfull",token:token,user:user});
             }else{
                 res.status(404).json({error:"login fail"})
             }
@@ -71,3 +71,17 @@ let isCustomer = false;
 if(req.user != null && req.user.role == "customer"){
     return isCustomer = true;
 }return isCustomer;}
+
+export async function getAllUsers(req,res){
+    try{
+        if(isItAdmin(req)){
+            const users = await UserModel.find()
+            res.json(users)
+
+        }else{
+            res.json({message : "your not authorize"})
+        }
+    }catch(error){
+         res.status(500).json({ message: "failed to get users", error: error.message });
+    }
+}

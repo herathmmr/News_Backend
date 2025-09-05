@@ -39,11 +39,7 @@ phone : {
     type : String,
     required :true,
 },
-profilePicture:{
-    type : String,
-    required : true,
-    default : "https://images.app.goo.gl/kP5SNwBts5ZFh5UJA"
-}
+
 
 });
 const UserModel =mongoose.model("users",userSchema);
