@@ -6,6 +6,8 @@ import userRouter from "./routes/userRouter.js";
 import jwt from "jsonwebtoken";
 import NewsRouter from "./routes/newsRoute.js";
 import cors from "cors";
+import likeroutes from "./routes/newslikeRoutes.js";
+
 
 
 dotenv.config();
@@ -44,6 +46,7 @@ connection.once("open",()=>{
 })
 app.use("/api/users",userRouter);
 app.use("/api/news",NewsRouter);
+app.use("/api/newslike", likeroutes);
 
 
 

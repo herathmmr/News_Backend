@@ -1,0 +1,81 @@
+I'm building a MERN stack news portal application and need to implement Google and Facebook OAuth authentication. Here are my requirements:
+
+**Current Setup:**
+- I have a User model with fields: firstName, lastName, email, password, address, phone, role, profilePicture
+- I have existing login/register endpoints with JWT authentication
+- My userController.js uses bcrypt for password hashing and JWT for tokens
+- Backend runs on http://localhost:3005
+- Frontend runs on http://localhost:5173
+
+**What I Need:**
+1. Install and configure Passport.js with Google and Facebook strategies
+2. Add OAuth fields to my User model (googleId, facebookId, authProvider)
+3. Create passport configuration file that:
+   - Checks if user exists by email
+   - If user exists, update their OAuth ID and log them in
+   - If user doesn't exist, create new user with OAuth data
+   - Handle both first-time registration and subsequent logins
+4. Create auth routes for:
+   - /api/auth/google (initiates Google OAuth)
+   - /api/auth/google/callback (handles Google callback)
+   - /api/auth/facebook (initiates Facebook OAuth)
+   - /api/auth/facebook/callback (handles Facebook callback)
+5. After successful OAuth, generate JWT token and redirect to frontend with token
+6. Update server.js to include passport middleware and session handling
+
+**Important Notes:**
+- Password should be optional for OAuth users
+- OAuth users should not need password to login
+- Use environment variables for OAuth credentials
+- Return same JWT format as existing login endpoint
+- Redirect successful OAuth to: http://localhost:5173/auth/success?token=JWT_TOKEN
+- On error, redirect to: http://localhost:5173/login
+
+**Environment Variables Needed:**
+GOOGLE_CLIENT_ID
+GOOGLE_CLIENT_SECRET
+FACEBOOK_APP_ID
+FACEBOOK_APP_SECRET
+SESSION_SECRET
+SECRET_KEY (already exists for JWT)
+
+Please provide:
+1. Updated User model (models/user.js)
+2. Passport configuration (config/passport.js)
+3. Auth routes (routes/authRoutes.js)
+4. Updated server.js
+5. List of npm packages to install
+6. Instructions for getting Google and Facebook OAuth credentials
+
+Make sure the code handles both registration AND login through the same OAuth flow.
+
+
+backend prompt
+
+Additional Context to Include:
+**My Current User Model Structure:**
+```javascript
+{
+  firstName: String,
+  lastName: String,
+  email: String (required, unique),
+  password: String,
+  address: String,
+  phone: String,
+  role: String (default: "customer"),
+  profilePicture: String
+}
+
+
+
+My Current JWT Payload:
+
+{
+  firstName: user.firstName,
+  lastName: user.lastName,
+  email: user.email,
+  role: user.role,
+  profilePicture: user.profilePicture,
+  phone: user.phone
+}
+
