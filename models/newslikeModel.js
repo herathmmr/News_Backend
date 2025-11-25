@@ -10,7 +10,11 @@ const newslikeSchema = new mongoose.Schema({
   likes: {
     type: Number,
     default: 0
-  }
+  },
+  likedBy: [{
+    type: String, // Store user emails
+    ref: 'User'
+  }]
 });
 
 export default mongoose.model("newslike", newslikeSchema);

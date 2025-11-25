@@ -1,15 +1,19 @@
-import newslike from "../models/newslikeModel.js";
+import News from "../models/news.js";
 
 export const likeNews = async (req, res) => {
   try {
-    const updated = await newslike.findByIdAndUpdate(
-      req.params.id,
+    const updated = await News.findOneAndUpdate(
+      { _id: req.params.id },   // <-- FIXED HERE
       { $inc: { likes: 1 } },
       { new: true }
     );
 
-    res.json({ likes: updated.likes });
+    if (!updated) {
+      return res.status(404).json({ error: "News article not found" });
+    }
+
+    res.json({ message: "Liked successfully", likes: updated.likes });
   } catch (error) {
-    res.status(500).json({ error: "Error updating like count" });
+    res.status(500).json({ error: "Error updating like count", message: error.message });
   }
 };

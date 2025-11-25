@@ -1,8 +1,11 @@
 import express from "express";
 import { likeNews } from "../controller/newslikeController.js";
 
-const router = express.Router();
+// Create router
+const likeroutes = express.Router();
 
-router.patch("/:id/like", likeNews);
+// Route to like a news article
+likeroutes.patch("/:id/like", likeNews);
 
-export default router;
+// Export router
+export default likeroutes;
