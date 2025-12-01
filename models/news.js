@@ -37,9 +37,14 @@ const NewsSchema = new mongoose.Schema(
     },
     likes: {
       type: Number,
-      default: 0,
+      default: 0
     },
+    likedBy: [{
+      type: String, // Store user emails
+      required: false
+    }]
   }, 
+  { timestamps: true }
 );
 
 const News = mongoose.model("News", NewsSchema);
