@@ -24,7 +24,7 @@ router.get(
       process.env.SECRET_KEY,
       { expiresIn: "7d" }
     );
-    res.redirect(`${process.env.CLIENT_URL || "http://localhost:3000"}/auth/success?token=${token}`);
+    res.redirect(`${process.env.CLIENT_URL || "http://localhost:5173"}/auth/success?token=${token}`);
   }
 );
 

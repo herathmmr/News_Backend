@@ -23,21 +23,21 @@ const userSchema = new mongoose.Schema({
 
   firstName: {
     type: String,
-    required: true,
+    
   },
   lastName: {
     type: String,
-    required: true,
+    
   },
 
   address: {
     type: String,
-    required: true,
+  
   },
 
   phone: {
     type: String,
-    required: true,
+   
   },
 
   googleId: { type: String, unique: true, sparse: true },
