@@ -7,6 +7,8 @@ import jwt from "jsonwebtoken";
 import NewsRouter from "./routes/newsRoute.js";
 import cors from "cors";
 import likeroutes from "./routes/newslikeRoutes.js";
+import passport from "./config/passport.js";
+import authRoutes from "./routes/authRoutes.js";
 
 
 
@@ -34,6 +36,7 @@ app.use((req,res,next)=>{
     next()
 })
 
+app.use(passport.initialize());
 
 
 let mongoUrl =process.env.MONGO_URL;
@@ -47,7 +50,7 @@ connection.once("open",()=>{
 app.use("/api/users",userRouter);
 app.use("/api/news",NewsRouter);
 app.use("/api/newslike", likeroutes);
-
+app.use("/api/auth", authRoutes);
 
 
 app.listen(3005,()=>{
